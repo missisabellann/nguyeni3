@@ -9,13 +9,7 @@ public class Multiples {
         return count;
     }
 
-    public static int fixedMultiples(int n=1000, int a=3, int b = 5){
-        int count = 0;
-        for(int i=1; i<n; i++){
-            if ((i%a == 0) || (i%b == 0)){
-                count++;
-            }
-        }
-        return count;
+    public static int main(){
+        return main(1000,3,5);
     }
 }
