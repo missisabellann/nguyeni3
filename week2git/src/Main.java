@@ -7,9 +7,7 @@ public class Main {
 
         // this corresponds to the main block from the provided python code.
 
-        // TODO make sure that this code can run without error by completing the code in BSTMultiSet.java
-        //      and BST.java.
-        //      We will run this file when testing your code.
+
 
         List<MultiSet<Integer>> multisets = new ArrayList<>();
         multisets.add(new BSTMultiSet<>());
