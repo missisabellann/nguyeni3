@@ -14,7 +14,7 @@ public class Problem18 {
 
     public static void main(String[] args) {
         try {
-            NumberTriangle mt = loadTriangle("input_tree.txt");
+            NumberTriangle mt = loadTriangle("week3git/input_tree.txt");
 
             // you can add code here if you want to try to solve
             // Problem 18 from project Euler [not for credit]
@@ -67,10 +67,38 @@ public class Problem18 {
     public static NumberTriangle loadTriangle(String fname) throws IOException {
         File f = new File(fname);
 
-        // TODO complete this method
+        try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
 
-        return null;
+            List<NumberTriangle> parents = new ArrayList<NumberTriangle>();
+            String row;
+            NumberTriangle root = new NumberTriangle(Integer.parseInt(reader.readLine()));
+            parents.add(root);
+            List<NumberTriangle> children = new ArrayList<>();
+
+            while ((row = reader.readLine()) != null) {
+                String[] values = row.split(" ");
+
+                for(String value: values){
+                    int num = Integer.parseInt(value);
+                    NumberTriangle newNum = new NumberTriangle(num);
+                    children.add(newNum);
+
+                    if (children.size() == 2) {
+                        // set child nodes
+                        parents.get(0).setLeft(children.get(0));
+                        parents.get(0).setRight(children.get(1));
+                        parents.clear();
+                        // set child nodes as new parent nodes
+                        parents.add(children.get(0));
+                        parents.add(children.get(1));
+                        children.clear();
+                    }
+                }
+
+
+                }
+            return root;
+            }
+        }
     }
 
-
-}
