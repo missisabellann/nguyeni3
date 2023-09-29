@@ -12,7 +12,7 @@ public class Problem18Test {
     public void aliasingTree() throws IOException {
 
         NumberTriangle mt = Problem18.loadTriangle("input_tree.txt");
-        assertEquals(mt.retrieve("lr"), mt.retrieve("lr"));
+        assertEquals(mt.retrieve("lr"), mt.retrieve("rl"));
     }
 
     @Test

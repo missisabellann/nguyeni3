@@ -74,9 +74,24 @@ public class Problem18 {
             NumberTriangle root = new NumberTriangle(Integer.parseInt(reader.readLine()));
             parents.add(root);
             List<NumberTriangle> children = new ArrayList<>();
+            String[] values = reader.readLine().split(" ");
+
+            int i = 0;
+            for(String value: values) {
+                int num = Integer.parseInt(value);
+                NumberTriangle newNum = new NumberTriangle(num);
+                if (i == 0) {
+                    root.setLeft(newNum);
+                    i++;
+                } else {
+                    root.setRight(newNum);
+                }
+                parents.add(newNum);
+            }
+            parents.remove(0);
 
             while ((row = reader.readLine()) != null) {
-                String[] values = row.split(" ");
+                values = row.split(" ");
 
                 for(String value: values){
                     int num = Integer.parseInt(value);
@@ -84,14 +99,17 @@ public class Problem18 {
                     children.add(newNum);
 
                     if (children.size() == 2) {
-                        // set child nodes
-                        parents.get(0).setLeft(children.get(0));
-                        parents.get(0).setRight(children.get(1));
-                        parents.clear();
+
                         // set child nodes as new parent nodes
                         parents.add(children.get(0));
                         parents.add(children.get(1));
-                        children.clear();
+                        // set child nodes
+                        parents.get(0).setLeft(children.get(0));
+                        parents.get(0).setRight(children.get(1));
+
+                        // remove child and parent
+                        parents.remove(0);
+                        children.remove(0);
                     }
                 }
 
